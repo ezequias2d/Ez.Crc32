@@ -51,7 +51,7 @@ namespace Ez.Crc32
                 _crc32LookupBlock = new uint[256 * 24];
                 Setup(_crc32LookupBlock, polynomial, 24);
             }
-            public bool IsSupported => true;
+            public bool IsSupported => BitConverter.IsLittleEndian;
             public uint Polynomial => _polynomial;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -142,34 +142,8 @@ namespace Ez.Crc32
                     }
 
                     for (var i = 0u; i <= 0xFF; i++)
-                    {
                         for(var j = 1u; j < n; j++)
-                        {
                             Set(ptr, j, i, (Get(ptr, j - 1, i) >> 8) ^ Get(ptr, 0, Get(ptr, j - 1, i) & 0xFF));
-                        }
-                        //Set(ptr, 1, i, (Get(ptr, 0, i) >> 8) ^ Get(ptr, 0, Get(ptr, 0, i) & 0xFF));
-                        //Set(ptr, 2, i, (Get(ptr, 1, i) >> 8) ^ Get(ptr, 0, Get(ptr, 1, i) & 0xFF));
-                        //Set(ptr, 3, i, (Get(ptr, 2, i) >> 8) ^ Get(ptr, 0, Get(ptr, 2, i) & 0xFF));
-                        //Set(ptr, 4, i, (Get(ptr, 3, i) >> 8) ^ Get(ptr, 0, Get(ptr, 3, i) & 0xFF));
-                        //Set(ptr, 5, i, (Get(ptr, 4, i) >> 8) ^ Get(ptr, 0, Get(ptr, 4, i) & 0xFF));
-                        //Set(ptr, 6, i, (Get(ptr, 5, i) >> 8) ^ Get(ptr, 0, Get(ptr, 5, i) & 0xFF));
-                        //Set(ptr, 7, i, (Get(ptr, 6, i) >> 8) ^ Get(ptr, 0, Get(ptr, 6, i) & 0xFF));
-
-                        //Set(ptr, 8, i, (Get(ptr, 7, i) >> 8) ^ Get(ptr, 0, Get(ptr, 7, i) & 0xFF));
-                        //Set(ptr, 9, i, (Get(ptr, 8, i) >> 8) ^ Get(ptr, 0, Get(ptr, 8, i) & 0xFF));
-                        //Set(ptr, 10, i, (Get(ptr, 9, i) >> 8) ^ Get(ptr, 0, Get(ptr, 9, i) & 0xFF));
-                        //Set(ptr, 11, i, (Get(ptr, 10, i) >> 8) ^ Get(ptr, 0, Get(ptr, 10, i) & 0xFF));
-                        //Set(ptr, 12, i, (Get(ptr, 11, i) >> 8) ^ Get(ptr, 0, Get(ptr, 11, i) & 0xFF));
-                        //Set(ptr, 13, i, (Get(ptr, 12, i) >> 8) ^ Get(ptr, 0, Get(ptr, 12, i) & 0xFF));
-                        //Set(ptr, 14, i, (Get(ptr, 13, i) >> 8) ^ Get(ptr, 0, Get(ptr, 13, i) & 0xFF));
-                        //Set(ptr, 15, i, (Get(ptr, 14, i) >> 8) ^ Get(ptr, 0, Get(ptr, 14, i) & 0xFF));
-
-                        //Set(ptr, 16, i, (Get(ptr, 15, i) >> 8) ^ Get(ptr, 0, Get(ptr, 15, i) & 0xFF));
-                        //Set(ptr, 17, i, (Get(ptr, 16, i) >> 8) ^ Get(ptr, 0, Get(ptr, 16, i) & 0xFF));
-                        //Set(ptr, 18, i, (Get(ptr, 17, i) >> 8) ^ Get(ptr, 0, Get(ptr, 17, i) & 0xFF));
-                        //Set(ptr, 19, i, (Get(ptr, 18, i) >> 8) ^ Get(ptr, 0, Get(ptr, 18, i) & 0xFF));
-                    }
-
                 }
             }
 
