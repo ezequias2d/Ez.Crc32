@@ -7,18 +7,22 @@
     <PackageProjectUrl>https://github.com/ezequias2d/Ez.Crc32</PackageProjectUrl>
     <Description>A fast implementation of crc32 using unsafe code, and if available, hardware intrinsics (only on x86 or x64).</Description>
     <Copyright>ezequias2d and Ez.Crc32 contributors.</Copyright>
+    <Version>1.0.0-rc1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIcon>ez-gear2x.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Crc32;Crc32C</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryUrl>https://github.com/ezequias2d/Ez.Crc32</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>C:\Users\ezequ\Source\Repos\Ez.Crc32\Ez.Crc32\Ez.Crc32.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
-    <DocumentationFile>C:\Users\ezequ\Source\Repos\Ez.Crc32\Ez.Crc32\Ez.Crc32.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +31,10 @@
 
   <ItemGroup>
     <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="ez-gear2x.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
