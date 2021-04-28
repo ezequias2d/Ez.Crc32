@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!--
+ Copyright (c) 2021 ezequias2d <ezequiasmoises@gmail.com> and the Ez.Crc32 contributors
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+-->
+<doc>
+    <assembly>
+        <name>Ez.Crc32</name>
+    </assembly>
+    <members>
+        <member name="T:Ez.Crc32.AutoCrc32">
+            <summary>
+            Static class that chooses the best compatible implementation.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.AutoCrc32.Crc32">
+            <summary>
+            Gets best <see cref="T:Ez.Crc32.ICrc32"/> implementation with the <see cref="F:Ez.Crc32.ManagedCrc32.Crc32Polynomial"/> polynomial.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.AutoCrc32.Crc32C">
+            <summary>
+            Gets best <see cref="T:Ez.Crc32.ICrc32"/> implementation with the <see cref="F:Ez.Crc32.ManagedCrc32.Crc32CPolynomial"/> polynomial.
+            </summary>
+        </member>
+        <member name="T:Ez.Crc32.ICrc32">
+            <summary>
+            Represents an implementation of CRC32.
+            </summary>
+        </member>
+        <member name="P:Ez.Crc32.ICrc32.IsSupported">
+            <summary>
+            Indicates that the implementation is supported.
+            </summary>
+        </member>
+        <member name="P:Ez.Crc32.ICrc32.Polynomial">
+            <summary>
+            Gets the polynomial of this instance.
+            </summary>
+        </member>
+        <member name="M:Ez.Crc32.ICrc32.Compute(System.Void*,System.UInt64)">
+            <summary>
+            Computes CRC-32 from data buffer.
+            </summary>
+            <param name="data">The data buffer pointer for calculating the CRC-32.</param>
+            <param name="length">The length of data in <paramref name="data"/> buffer.</param>
+            <returns>CRC-32 of data buffer.</returns>
+        </member>
+        <member name="M:Ez.Crc32.ICrc32.Compute(System.IntPtr,System.IntPtr)">
+            <summary>
+            Computes CRC-32 from data buffer.
+            </summary>
+            <param name="data">The data buffer pointer for calculating the CRC-32.</param>
+            <param name="length">The length of data in <paramref name="data"/> buffer.</param>
+            <returns>CRC-32 of data buffer.</returns>
+        </member>
+        <member name="M:Ez.Crc32.ICrc32.Compute(System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Computes CRC-32 from data buffer.
+            </summary>
+            <param name="data">The data buffer for calculating the CRC-32.</param>
+            <returns>CRC-32 of data buffer.</returns>
+        </member>
+        <member name="M:Ez.Crc32.ICrc32.Compute(System.UInt32,System.Void*,System.UInt64)">
+            <summary>
+            Computes CRC-32 from initial CRC-32 and a data buffer.
+            Call this method several times to calculate CRC-32 from multiple buffers.
+            </summary>
+            <param name="previousCrc">Initial value of crc-32.</param>
+            <param name="data">The data buffer pointer for calculating the CRC-32.</param>
+            <param name="length">The length of data in <paramref name="data"/> buffer.</param>
+            <returns>CRC-32 of data buffer.</returns>
+        </member>
+        <member name="M:Ez.Crc32.ICrc32.Compute(System.UInt32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Computes CRC-32 from initial CRC-32 and a data buffer.
+            Call this method several times to calculate CRC-32 from multiple buffers.
+            </summary>
+            <param name="previousCrc">Initial value of crc-32.</param>
+            <param name="data">The data buffer pointer for calculating the CRC-32.</param>
+            <param name="length">The length of data in <paramref name="data"/> buffer.</param>
+            <returns>CRC-32 of data buffer.</returns>
+        </member>
+        <member name="M:Ez.Crc32.ICrc32.Compute(System.UInt32,System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Computes CRC-32 from data buffer.
+            </summary>
+            <param name="previousCrc">Initial value of crc-32.</param>
+            <param name="data">The data buffer for calculating the CRC-32.</param>
+            <returns>CRC-32 of data buffer.</returns>
+        </member>
+        <member name="T:Ez.Crc32.ManagedCrc32">
+            <summary>
+            Provide generic <see cref="T:Ez.Crc32.ICrc32"/> implementations.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.ManagedCrc32.Crc32Polynomial">
+            <summary>
+            CRC32 polynomial.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.ManagedCrc32.Crc32CPolynomial">
+            <summary>
+            CRC32C polynomial 
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.ManagedCrc32.Crc32">
+            <summary>
+            Generic implementation of <see cref="T:Ez.Crc32.ICrc32"/> with the <see cref="F:Ez.Crc32.ManagedCrc32.Crc32Polynomial"/> polynomial.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.ManagedCrc32.Crc32C">
+            <summary>
+            Generic implementation of <see cref="T:Ez.Crc32.ICrc32"/> with the <see cref="F:Ez.Crc32.ManagedCrc32.Crc32CPolynomial"/> polynomial.
+            </summary>
+        </member>
+        <member name="M:Ez.Crc32.ManagedCrc32.Create(System.UInt32)">
+            <summary>
+            Creates an <see cref="T:Ez.Crc32.ICrc32"/> object that uses a custom polynomial.
+            </summary>
+            <param name="polynomial">Polynomial used by <see cref="T:Ez.Crc32.ICrc32"/>.</param>
+            <returns>Generic implementation of <see cref="T:Ez.Crc32.ICrc32"/> with the <paramref name="polynomial"/>.</returns>
+        </member>
+        <member name="T:Ez.Crc32.NativeCrc32C">
+            <summary>
+            Provide native <see cref="T:Ez.Crc32.ICrc32"/> implementations using intrinsics.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.NativeCrc32C.X86">
+            <summary>
+            <see cref="T:Ez.Crc32.ICrc32"/> implementation that uses x86 intrinsics.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.NativeCrc32C.X64">
+            <summary>
+            <see cref="T:Ez.Crc32.ICrc32"/> implementation that uses x86 intrinsics.
+            </summary>
+        </member>
+        <member name="F:Ez.Crc32.NativeCrc32C.Default">
+            <summary>
+            <see cref="T:Ez.Crc32.ICrc32"/> implementation that uses x64 intrinsics when supported, otherwise x86.
+            </summary>
+        </member>
+    </members>
+</doc>
