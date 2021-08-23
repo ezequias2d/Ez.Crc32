@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-#if NETCOREAPP3_0_OR_GREATER
+#if NET5_0_OR_GREATER
 using System.Runtime.Intrinsics.X86;
 #endif
 
@@ -34,7 +34,7 @@ namespace Ez.Crc32
         private class NativeX86 : ICrc32
         {
             public bool IsSupported =>
-#if NETCOREAPP3_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 Sse42.IsSupported;
 #else
                 false;
@@ -48,7 +48,7 @@ namespace Ez.Crc32
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public unsafe uint Compute(uint previousCrc, void* data, ulong length)
             {
-#if NETCOREAPP3_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 if (!Sse42.IsSupported)
                     throw new NotSupportedException();
                 
@@ -108,7 +108,7 @@ namespace Ez.Crc32
         private class NativeX64 : ICrc32
         {
             public bool IsSupported =>
-#if NETCOREAPP3_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 Sse42.X64.IsSupported;
 #else
                 false;
@@ -119,7 +119,7 @@ namespace Ez.Crc32
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public unsafe uint Compute(uint previousCrc, void* data, ulong length)
             {
-#if NETCOREAPP3_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 if (!Sse42.X64.IsSupported)
                     throw new NotSupportedException();
 
